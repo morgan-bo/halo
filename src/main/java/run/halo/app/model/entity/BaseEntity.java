@@ -28,8 +28,8 @@ public class BaseEntity {
     /**
      * Create time.
      */
-    @Column(name = "create_time")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_time")  //将createTime变量与数据库create_time挂钩
+    @Temporal(TemporalType.TIMESTAMP)  //用于转换Data类型变量的数据格式
     private Date createTime;
 
     /**

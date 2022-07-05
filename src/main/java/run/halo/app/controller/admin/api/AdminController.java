@@ -36,7 +36,7 @@ import run.halo.app.service.OptionService;
  */
 @Slf4j
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/admin")  //此类的总体url是ip:port/api/admin/
 public class AdminController {
 
     private final AdminService adminService;
@@ -55,11 +55,14 @@ public class AdminController {
             false);
     }
 
-    @PostMapping("login/precheck")
-    @ApiOperation("Login")
+    @PostMapping("login/precheck")  //登陆请求的预检查url /api/admin/login/precheck
+    @ApiOperation("Login")  //swagger里的注解
     @CacheLock(autoDelete = false, prefix = "login_precheck")
     public LoginPreCheckDTO authPreCheck(@RequestBody @Valid LoginParam loginParam) {
-        final User user = adminService.authenticate(loginParam);
+        //LoginPreCheckDTO:
+        //DTO Data Transfer Object，当客户端需要读取服务器端的数据的时候，服务器将
+        //数据封装在DTO中，则客户端可以在一个网络调用中获得它所需要的数据。
+        final User user = adminService.authenticate(loginParam);  //鉴权，若成功则返回一个用户entity
         return new LoginPreCheckDTO(MFAType.useMFA(user.getMfaType()));
     }
 

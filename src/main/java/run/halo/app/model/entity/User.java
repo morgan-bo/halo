@@ -31,7 +31,7 @@ public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id")  //将变量与数据库id列挂钩
     private Integer id;
 
     /**
